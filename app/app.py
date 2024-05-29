@@ -4,7 +4,8 @@ import joblib
 app = Flask(__name__)
 
 # Load the Scikit-learn model
-model = joblib.load('model\\crop_recommend_model.pkl')
+# model = joblib.load('model\\crop_recommend_model.pkl')
+model = joblib.load('crop_recommend_model.pkl')
 
 # Mapping of numeric predictions to crop names
 crop_mapping = {
