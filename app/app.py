@@ -61,15 +61,15 @@ def predict_crop():
         app.logger.info(f"crop: {predicted_class}, {predict_crop}")
 
         # Return the prediction as a JSON response
-        return jsonify({"predicted_crop": predicted_crop})
+        return {"predicted_crop": predicted_crop}
     
 
     except KeyError as e:
         app.logger.error(f"Missing data: {e}")
-        return jsonify({"error": f"Missing data: {e}"}), 400
+        return {"error": f"Missing data: {e}"}, 400
     except Exception as e:
         app.logger.error(f"Missing data: {e}")
-        return jsonify({"error": str(e)}), 500
+        return {"error": str(e)}, 500
 
 if __name__ == '__main__':
     app.run(debug=True)
