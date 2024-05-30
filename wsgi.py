@@ -1,3 +1,3 @@
-from app.app_model import app
+from app.app_model import app_model
 
-application = app()
+application = app_model()
