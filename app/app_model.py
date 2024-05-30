@@ -98,7 +98,7 @@ crop_mapping = {
 def predict_crop():
     try:
 
-        model = joblib.load(current_app.config['MODEL_PATH']) 
+        model = joblib.load(app.config['MODEL_PATH']) 
         
         # Get the JSON data from the request
         data = request.json
