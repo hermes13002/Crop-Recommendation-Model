@@ -1,3 +1,3 @@
-from app.app_model import app
+from app.app_model import predict_crop
 
-application = app()
+application = predict_crop()
