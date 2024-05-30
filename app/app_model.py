@@ -78,14 +78,13 @@
 
 
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, current_app
 import joblib
 
 app = Flask(__name__)
 
 # Load the Scikit-learn model
-with app.app_context():
-    model = joblib.load('crop_recommend_model.pkl')
+# model = joblib.load('crop_recommend_model.pkl')
 
 # Mapping of numeric predictions to crop names
 crop_mapping = {
@@ -98,6 +97,9 @@ crop_mapping = {
 @app.route('/predict', methods=['POST'])
 def predict_crop():
     try:
+
+        model = joblib.load(current_app.config['MODEL_PATH']) 
+        
         # Get the JSON data from the request
         data = request.json
 
@@ -145,4 +147,5 @@ def predict_crop():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
+    app.config['MODEL_PATH'] = 'crop_recommend_model.pkl'
     app.run(debug=True)
