@@ -18,7 +18,7 @@ crop_mapping = {
 
 @app.route('/predict', methods=['POST'])
 def predict_crop():
-    try:
+    if request.method == 'POST':
         # Get the JSON data from the request
         # data = request.get_json(force=True)
         # features = data['features'] 
@@ -26,7 +26,7 @@ def predict_crop():
         # Get the JSON data from the request
         data = request.json
 
-        # Log the received data for debugging
+        # Log the received data for debugging   
         app.logger.info(f"Received data: {data}")
 
         # Validate the received data
@@ -64,12 +64,12 @@ def predict_crop():
         return "predicted_crop", predicted_crop
     
 
-    except KeyError as e:
-        app.logger.error(f"Missing data: {e}")
-        return "error", f"Missing data: {e}", 400
-    except Exception as e:
-        app.logger.error(f"Missing data: {e}")
-        return "error", str(e), 500
+    # except KeyError as e:
+    #     app.logger.error(f"Missing data: {e}")
+    #     return "error", f"Missing data: {e}", 400
+    # except Exception as e:
+    #     app.logger.error(f"Missing data: {e}")
+    #     return "error", str(e), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
